@@ -15,6 +15,9 @@ const requestListener = function (req: IncomingMessage, res: ServerResponse) {
     getContacts(req, res);
   } else if (req.url === "/api/contacts" && req.method === "POST") {
     createContact(req, res);
+  } else if (req.url === "/api/contacts" && req.method === "OPTIONS") {
+    res.writeHead(200);
+    res.end();
   } else {
     res.writeHead(404, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ message: "Route not found" }));

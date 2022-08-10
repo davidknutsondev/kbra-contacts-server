@@ -6,15 +6,15 @@ import url from "url";
 
 const requestHandler = new RequestHandler();
 
-// const headers = {
-//   "Access-Control-Allow-Origin": "*",
-//   "Access-Control-Allow-Methods": "OPTIONS, POST, GET",
-//   "Access-Control-Max-Age": 2592000, // 30 days
-//   "Access-Control-Allow-Headers": "*",
-//   // "Content-Type": "application/json",
-//   // "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-//   /** add other headers as per requirement */
-// };
+const headers = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "OPTIONS, POST, GET",
+  "Access-Control-Max-Age": 2592000, // 30 days
+  "Access-Control-Allow-Headers": "*",
+  "Content-Type": "application/json",
+  // "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+  /** add other headers as per requirement */
+};
 
 // @desc Gets all contacts
 // @route GET /api/contacts
@@ -54,8 +54,8 @@ export async function createContact(req: IncomingMessage, res: ServerResponse) {
 
     const newContact = requestHandler.createContact(contactInput);
 
-    // res.writeHead(201, headers);
-    res.writeHead(201, { "Content-Type": "application/json" });
+    res.writeHead(201, headers);
+    // res.writeHead(201, { "Content-Type": "application/json" });
     return res.end(JSON.stringify(newContact));
   } catch (error) {
     console.log(error);

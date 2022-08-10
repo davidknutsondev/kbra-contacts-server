@@ -7,7 +7,7 @@ export class RequestHandler {
   private contacts: Contact[];
 
   constructor() {
-    this.contacts = generateFakeDatabase(10);
+    this.contacts = generateFakeDatabase(1);
   }
 
   loadContacts = (searchTerm?: string): Contact[] => {
