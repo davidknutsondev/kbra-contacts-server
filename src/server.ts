@@ -23,5 +23,5 @@ const requestListener = function (req: IncomingMessage, res: ServerResponse) {
 
 const server = createServer(requestListener);
 server.listen(port, host, () => {
-  console.log(`Contacts Server is running on http://${host}:${port}`);
+  console.log(`Server is running on http://${host}:${port}`);
 });

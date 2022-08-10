@@ -1,8 +1,6 @@
 import { faker } from "@faker-js/faker";
 import lodash from "lodash";
 import { Contact } from "./types";
-// const { faker } = require("@faker-js/faker");
-// var lodash = require("lodash");
 
 export function generateFakeDatabase(numberOfContacts: number): Contact[] {
   return lodash.times(numberOfContacts, function generateFakeAddressEntries(n) {
