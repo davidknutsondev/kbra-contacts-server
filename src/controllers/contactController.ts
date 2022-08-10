@@ -19,20 +19,14 @@ const requestHandler = new RequestHandler();
 // @desc Gets all contacts
 // @route GET /api/contacts
 
-export async function getContacts(req: IncomingMessage, res: ServerResponse) {
+export async function getContacts(req: any, res: ServerResponse) {
   try {
-    // get url query search term
-
-    // const queryObject = url.parse(req.url, true).query;
-
-    // const parsedUrl = new URL(req.url!);
-
-    // const {search}=parsedUrl.searchParams[0]
-
-    const contacts = requestHandler.loadContacts();
-
+    const queryObject = url.parse(req.url, true).query;
+    const searchInput = queryObject.searchInput as string;
+    const contacts = requestHandler.loadContacts(searchInput);
     // res.writeHead(200, headers);
-    res.writeHead(200, { "Content-Type": "application/json" });
+    res.writeHead(200, { "Content-Type": "text/html" });
+    // res.writeHead(200, { "Content-Type": "application/json" });
     res.end(JSON.stringify(contacts));
   } catch (error) {
     console.log(error);

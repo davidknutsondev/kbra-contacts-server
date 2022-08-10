@@ -7,15 +7,15 @@ export class RequestHandler {
   private contacts: Contact[];
 
   constructor() {
-    this.contacts = generateFakeDatabase();
+    this.contacts = generateFakeDatabase(10);
   }
 
   loadContacts = (searchTerm?: string): Contact[] => {
     if (!searchTerm) {
       return alphabetizeContacts(this.contacts);
     } else {
-      const asdf = searchContacts(this.contacts, searchTerm);
-      return alphabetizeContacts(asdf);
+      const searchContactsResult = searchContacts(this.contacts, searchTerm);
+      return alphabetizeContacts(searchContactsResult);
     }
   };
 
