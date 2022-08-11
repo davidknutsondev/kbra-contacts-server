@@ -47,7 +47,10 @@ export const isContactUnique = (
 
   const phoneExists =
     contacts.find((existingContact) => {
-      return existingContact.phone === newContactPhone;
+      return (
+        existingContact.phone?.replace(/\D/g, "") ===
+        newContactPhone?.replace(/\D/g, "")
+      );
     }) !== undefined;
 
   if (emailExists) {
