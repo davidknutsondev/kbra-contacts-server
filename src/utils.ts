@@ -1,7 +1,6 @@
 import { Contact } from "./types";
 
 export function getPostData(req) {
-  console.log("in getpostData");
   return new Promise((resolve, reject) => {
     try {
       let body = "";
@@ -18,7 +17,9 @@ export function getPostData(req) {
 }
 
 const checkForSubstring = (substring: string, string: string): boolean => {
-  return string.indexOf(substring) !== -1;
+  const lowerCaseString = string.toLowerCase();
+  const lowerCaseSubstring = substring.toLowerCase();
+  return lowerCaseString.indexOf(lowerCaseSubstring) !== -1;
 };
 
 export const searchContacts = (

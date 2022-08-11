@@ -2,7 +2,7 @@ import { createServer, IncomingMessage, ServerResponse } from "http";
 import {
   createContact,
   getContacts,
-  isUnique,
+  isContactUnique,
 } from "./controllers/contactController";
 import { ContactInput } from "./types";
 import { getPostData } from "./utils";
@@ -25,25 +25,17 @@ const requestListener = async function (
   } else if (req.url === "/api/contacts" && req.method === "POST") {
     const body: any = await getPostData(req);
 
-    // const { email, phone }: ContactInput = JSON.parse(body);
     const { address, email, phone, firstName, lastName, avatar }: ContactInput =
       JSON.parse(body);
 
-    const emailPhoneUnique = isUnique(phone, email) === true;
-    const emailExists = isUnique(phone, email) === "emailExists";
-    const phoneExists = isUnique(phone, email) === "phoneExists";
+    const contactInput = { address, email, phone, firstName, lastName, avatar };
 
-    // refactor to switch statement
-
-    // console.log("emailPhoneUnique", emailPhoneUnique);
+    const emailPhoneUnique = isContactUnique(phone, email) === true;
+    const emailExists = isContactUnique(phone, email) === "emailExists";
+    const phoneExists = isContactUnique(phone, email) === "phoneExists";
 
     if (emailPhoneUnique) {
-      // res.writeHead(200);
-      // console.log("Made it in the If");
-      createContact(
-        { address, email, phone, firstName, lastName, avatar },
-        res
-      );
+      createContact(contactInput, res);
     } else if (emailExists) {
       res.writeHead(403, { "Content-Type": "application/json" });
       res.end(
