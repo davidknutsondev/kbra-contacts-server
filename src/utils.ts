@@ -1,6 +1,7 @@
 import { Contact } from "./types";
 
 export function getPostData(req) {
+  console.log("in getpostData");
   return new Promise((resolve, reject) => {
     try {
       let body = "";
@@ -30,7 +31,7 @@ export const searchContacts = (
     const searchContactsResult = contacts.filter(
       (contact) =>
         checkForSubstring(userSearchInput, contact.firstName!) ||
-        checkForSubstring(userSearchInput, contact.firstName!)
+        checkForSubstring(userSearchInput, contact.lastName!)
     );
     return searchContactsResult;
   }

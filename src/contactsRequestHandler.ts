@@ -20,6 +20,7 @@ export class RequestHandler {
   };
 
   createContact = (input: ContactInput): Contact => {
+    console.log("in Request handler");
     const newContact = { id: uuidv4, ...input };
     this.contacts.push(newContact);
     return newContact;
